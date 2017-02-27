@@ -63,7 +63,6 @@ namespace IrcServer
 
                     // Pass client along to protocol parser
                     Task t = HandleClient(tcpClient);
-                    await t;
                 }
 
             }
