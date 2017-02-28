@@ -55,20 +55,19 @@ namespace IrcServer
             listener.Start();
             Logger.Info("Server started");
 
-            try
+            while (true)
             {
-                while (true)
+                try
                 {
                     TcpClient tcpClient = await listener.AcceptTcpClientAsync();
 
                     // Pass client along to protocol parser
                     Task t = HandleClient(tcpClient);
                 }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 
