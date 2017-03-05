@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using IrcServer.Irc;
+using IrcServer.Commands;
 
 namespace IrcServer
 {
@@ -82,13 +82,16 @@ namespace IrcServer
                 var reader = new StreamReader(stream);
                 var writer = new StreamWriter(stream) {AutoFlush = true};
 
+                // Say hello to client
+                await writer.WriteLineAsync("INFO Client connected.");
+
                 while (true)
                 {
                     string command = await reader.ReadLineAsync();
                     if (command != null)
                     {
                         // Handle command from client
-                        string response = HandleCommand(command);
+                        string response = HandleCommand(tcpClient, command);
                         if (response != null)
                         {
                             await writer.WriteLineAsync(response);
@@ -111,7 +114,7 @@ namespace IrcServer
             }
         }
 
-        private string HandleCommand(string message)
+        private string HandleCommand(TcpClient client, string message)
         {
             string[] verbs = message.Split(' ');
             string verb = verbs[0];

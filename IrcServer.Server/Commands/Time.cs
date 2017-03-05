@@ -1,5 +1,4 @@
 ﻿using System;
-using IrcServer.Irc;
 
 namespace IrcServer.Commands
 {

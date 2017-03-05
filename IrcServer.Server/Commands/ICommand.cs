@@ -1,4 +1,4 @@
-﻿namespace IrcServer.Irc
+﻿namespace IrcServer.Commands
 {
     public interface ICommand
     {

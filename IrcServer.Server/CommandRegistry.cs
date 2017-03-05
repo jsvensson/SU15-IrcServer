@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IrcServer.Irc;
+﻿using System.Collections.Generic;
+using IrcServer.Commands;
 
 namespace IrcServer
 {
     static class CommandRegistry
     {
-        public static Dictionary<string, ICommand> Commands { get; private set; }
-
-        static CommandRegistry()
-        {
-            Commands = new Dictionary<string, ICommand>();
-        }
+        public static Dictionary<string, ICommand> Commands { get; } = new Dictionary<string, ICommand>();
 
         public static void RegisterCommand(string command, ICommand callback)
         {
