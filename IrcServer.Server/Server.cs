@@ -78,24 +78,16 @@ namespace IrcServer
 
             try
             {
-                NetworkStream stream = tcpClient.GetStream();
-                var reader = new StreamReader(stream);
-                var writer = new StreamWriter(stream) {AutoFlush = true};
-
-                // Say hello to client
-                await writer.WriteLineAsync("INFO Client connected.");
+                var user = new User(tcpClient);
 
                 while (true)
                 {
-                    string command = await reader.ReadLineAsync();
+                    string command = await user.ReadLine();
+                    Console.WriteLine($"Got {command}");
                     if (command != null)
                     {
                         // Handle command from client
-                        string response = HandleCommand(tcpClient, command);
-                        if (response != null)
-                        {
-                            await writer.WriteLineAsync(response);
-                        }
+                        HandleCommand(user, command);
                     }
                     else
                     {
@@ -114,7 +106,7 @@ namespace IrcServer
             }
         }
 
-        private string HandleCommand(TcpClient client, string message)
+        private void HandleCommand(User user, string message)
         {
             string[] parts = message.Split(' ');
             string instruction = parts[0];
@@ -131,10 +123,15 @@ namespace IrcServer
 
             if (command != null)
             {
-                response = command.Run(data);
+                var writer = new StreamWriter(user.Client.GetStream());
+                writer.WriteLineAsync("Sending something");
+                command.Run(user, data);
             }
-
-            return response;
+            else
+            {
+                // Unknown command, inform client
+                user.WriteLine(response);
+            }
         }
     }
 }
