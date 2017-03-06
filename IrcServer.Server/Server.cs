@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
 using IrcServer.Commands;
 
@@ -13,33 +9,12 @@ namespace IrcServer
 {
     public class Server
     {
-        private readonly IPAddress ipAddress;
         private readonly int port;
 
         public Server(int port)
         {
-            RegisterCommands();
-
             this.port = port;
-
-            // Hostname setup
-            string hostName = Dns.GetHostName();
-            IPHostEntry hostInfo = Dns.GetHostEntry(hostName);
-
-            ipAddress = null;
-            foreach (IPAddress t in hostInfo.AddressList)
-            {
-                if (t.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    ipAddress = t;
-                    break;
-                }
-            }
-
-            if (ipAddress == null)
-            {
-                throw new Exception("No IPv4 address detected");
-            }
+            RegisterCommands();
         }
 
         public void RegisterCommands()
@@ -60,8 +35,6 @@ namespace IrcServer
                 try
                 {
                     TcpClient tcpClient = await listener.AcceptTcpClientAsync();
-
-                    // Pass client along to protocol parser
                     Task t = HandleClient(tcpClient);
                 }
                 catch (Exception ex)
@@ -83,10 +56,8 @@ namespace IrcServer
                 while (true)
                 {
                     string command = await user.ReadLine();
-                    Console.WriteLine($"Got {command}");
                     if (command != null)
                     {
-                        // Handle command from client
                         HandleCommand(user, command);
                     }
                     else
@@ -123,8 +94,6 @@ namespace IrcServer
 
             if (command != null)
             {
-                var writer = new StreamWriter(user.Client.GetStream());
-                writer.WriteLineAsync("Sending something");
                 command.Run(user, data);
             }
             else

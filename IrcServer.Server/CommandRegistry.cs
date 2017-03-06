@@ -7,10 +7,10 @@ namespace IrcServer
     {
         private static Dictionary<string, ICommand> Commands { get; } = new Dictionary<string, ICommand>();
 
-        public static void RegisterCommand(string command, ICommand callback)
+        public static void RegisterCommand(string command, ICommand handler)
         {
             command = command.ToUpper();
-            Commands.Add(command, callback);
+            Commands.Add(command, handler);
         }
 
         public static ICommand GetCommand(string verb)
