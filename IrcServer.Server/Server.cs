@@ -116,19 +116,18 @@ namespace IrcServer
 
         private string HandleCommand(TcpClient client, string message)
         {
-            string[] verbs = message.Split(' ');
-            string verb = verbs[0];
+            string[] parts = message.Split(' ');
+            string instruction = parts[0];
             string response = "ERROR Unknown command";
             string data = null;
 
             // Check argument length
-            if (verbs.Length > 1)
+            if (parts.Length > 1)
             {
-                data = string.Join(" ", verbs, 1, verb.Length - 2);
+                data = string.Join(" ", parts, 1, instruction.Length - 2);
             }
 
-            ICommand command;
-            CommandRegistry.Commands.TryGetValue(verb, out command);
+            ICommand command = CommandRegistry.GetCommand(instruction);
 
             if (command != null)
             {
