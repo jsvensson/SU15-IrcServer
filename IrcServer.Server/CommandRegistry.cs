@@ -5,17 +5,17 @@ namespace IrcServer
 {
     static class CommandRegistry
     {
-        private static Dictionary<string, ICommand> Commands { get; } = new Dictionary<string, ICommand>();
+        private static Dictionary<string, IServerCommand> Commands { get; } = new Dictionary<string, IServerCommand>();
 
-        public static void RegisterCommand(string command, ICommand handler)
+        public static void RegisterCommand(string command, IServerCommand handler)
         {
             command = command.ToUpper();
             Commands.Add(command, handler);
         }
 
-        public static ICommand GetCommand(string verb)
+        public static IServerCommand GetCommand(string verb)
         {
-            ICommand command;
+            IServerCommand command;
             Commands.TryGetValue(verb, out command);
             return command;
         }

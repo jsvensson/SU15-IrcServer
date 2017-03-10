@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandRegistry.cs" />
-    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\IServerCommand.cs" />
     <Compile Include="Commands\Time.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Server.cs" />

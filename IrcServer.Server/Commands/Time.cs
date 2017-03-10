@@ -2,7 +2,7 @@
 
 namespace IrcServer.Commands
 {
-    public class Time : ICommand
+    public class Time : IServerCommand
     {
         public void Run(User user, string command)
         {

@@ -90,7 +90,7 @@ namespace IrcServer
                 data = string.Join(" ", parts, 1, instruction.Length - 2);
             }
 
-            ICommand command = CommandRegistry.GetCommand(instruction);
+            IServerCommand command = CommandRegistry.GetCommand(instruction);
 
             if (command != null)
             {

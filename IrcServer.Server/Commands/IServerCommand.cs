@@ -1,6 +1,6 @@
 ﻿namespace IrcServer.Commands
 {
-    public interface ICommand
+    public interface IServerCommand
     {
         void Run(User user, string command);
     }
