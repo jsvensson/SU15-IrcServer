@@ -25,7 +25,7 @@ namespace IrcServer
             // Say hello to client on connection
             if (Client.Connected)
             {
-                WriteLine("INFO Client connected.");
+                WriteLine("INFO Connected to server");
             }
         }
 
@@ -37,6 +37,18 @@ namespace IrcServer
         public Task WriteLine(string value)
         {
             return writer.WriteLineAsync(value);
+        }
+
+        public void Disconnect(string message = null)
+        {
+            if (message == null)
+            {
+                message = "Connection reset by peer";
+            }
+
+            //TODO: Tell server it can't fire me, I quit!
+
+            Client.Close();
         }
     }
 }
