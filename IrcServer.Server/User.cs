@@ -46,6 +46,7 @@ namespace IrcServer
                 message = "Connection reset by peer";
             }
 
+            Logger.Info($"Client disconnected: {message}");
             //TODO: Tell server it can't fire me, I quit!
 
             Client.Close();

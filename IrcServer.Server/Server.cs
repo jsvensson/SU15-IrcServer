@@ -22,6 +22,7 @@ namespace IrcServer
             Logger.Info("Registering protocol commands...");
 
             CommandRegistry.RegisterCommand("TIME", new Commands.Time());
+            CommandRegistry.RegisterCommand("QUIT", new Commands.Quit());
         }
 
         public async void Start()
@@ -63,8 +64,7 @@ namespace IrcServer
                     else
                     {
                         // Client closed connection
-                        Logger.Info("Connection reset by peer");
-                        tcpClient.Close();
+                        user.Disconnect("Connection reset by peer");
                         break;
                     }
                 }
@@ -87,7 +87,7 @@ namespace IrcServer
             // Check argument length
             if (parts.Length > 1)
             {
-                data = string.Join(" ", parts, 1, instruction.Length - 2);
+                data = string.Join(" ", parts, 1, parts.Length - 1);
             }
 
             IServerCommand command = CommandRegistry.GetCommand(instruction);
