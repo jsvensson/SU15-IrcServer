@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -10,6 +10,9 @@ namespace IrcServer
     public class Server
     {
         private readonly int port;
+
+        public List<User> Users { get; set; } = new List<User>();
+        public static Dictionary<string, Channel> Channels { get; set; } = new Dictionary<string, Channel>();
 
         public Server(int port)
         {
@@ -23,8 +26,15 @@ namespace IrcServer
 
             CommandRegistry.RegisterCommand("TIME", new Commands.Time());
             CommandRegistry.RegisterCommand("QUIT", new Commands.Quit());
+            CommandRegistry.RegisterCommand("JOIN", new Commands.Join());
+            CommandRegistry.RegisterCommand("PART", new Commands.Part());
+            CommandRegistry.RegisterCommand("PRIVMSG", new Commands.PrivMsg());
+            CommandRegistry.RegisterCommand("NICK", new Commands.Nick());
+
+            Logger.Info("Protocol commands registered.");
         }
 
+        #region Network handling
         public async void Start()
         {
             var listener = new TcpListener(IPAddress.Any, port);
@@ -53,6 +63,7 @@ namespace IrcServer
             try
             {
                 var user = new User(tcpClient);
+                Users.Add(user);
 
                 while (true)
                 {
@@ -77,24 +88,28 @@ namespace IrcServer
             }
         }
 
-        private void HandleCommand(User user, string message)
+        private void HandleCommand(User user, string value)
         {
-            string[] parts = message.Split(' ');
-            string instruction = parts[0];
+            // Default return message
             string response = "ERROR Unknown command";
-            string data = null;
 
-            // Check argument length
-            if (parts.Length > 1)
+            value = value.Trim();
+            string instruction = value;
+            string args = null;
+
+            // Check if we got parameters with the instruction
+            if (value.IndexOf(' ') > -1)
             {
-                data = string.Join(" ", parts, 1, parts.Length - 1);
+                instruction = value.SplitCommand()[0];
+                args = value.SplitCommand()[1];
             }
+
 
             IServerCommand command = CommandRegistry.GetCommand(instruction);
 
             if (command != null)
             {
-                command.Run(user, data);
+                command.Run(user, args);
             }
             else
             {
@@ -102,5 +117,16 @@ namespace IrcServer
                 user.WriteLine(response);
             }
         }
+        #endregion Network handling
+
+        #region IRC functionality
+        public static Channel CreateChannel(string name)
+        {
+            var channel = new Channel(name);
+            Channels.Add(channel.Name, channel);
+
+            return channel;
+        }
+        #endregion IRC functionality
     }
 }
