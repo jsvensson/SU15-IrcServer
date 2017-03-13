@@ -1,0 +1,13 @@
+﻿<Window x:Class="IrcServer.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IrcServer.Client"
+        mc:Ignorable="d"
+        Title="Ful-klient" Height="285.487" Width="478.284">
+    <Grid>
+        <TextBox x:Name="InputTextBox" KeyDown="InputTextBox_OnKeyDown" TextWrapping="Wrap" Text="" Height="21" VerticalAlignment="Bottom" />
+        <TextBlock x:Name="ChannelTextBlock" Height="228" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+    </Grid>
+</Window>

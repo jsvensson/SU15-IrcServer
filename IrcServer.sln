@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcServer.Server", "IrcServer.Server\IrcServer.Server.csproj", "{44C9B6CF-A53C-4D6D-80D1-57C28202A1B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcServer.ServerConsole", "IrcServer.ServerConsole\IrcServer.ServerConsole.csproj", "{D7613E43-9A48-4EA9-9B29-D510DD150285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrcServer.Client", "IrcServer.Client\IrcServer.Client.csproj", "{18B8110E-B5C7-4C1A-8964-ED25EC2CCECD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D7613E43-9A48-4EA9-9B29-D510DD150285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7613E43-9A48-4EA9-9B29-D510DD150285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7613E43-9A48-4EA9-9B29-D510DD150285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18B8110E-B5C7-4C1A-8964-ED25EC2CCECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18B8110E-B5C7-4C1A-8964-ED25EC2CCECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18B8110E-B5C7-4C1A-8964-ED25EC2CCECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18B8110E-B5C7-4C1A-8964-ED25EC2CCECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
