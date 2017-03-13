@@ -14,7 +14,7 @@ namespace IrcServer.Commands
 
             if (!validName)
             {
-                user.WriteLine($"ERR_NOSUCHCHANNEL {channelName}");
+                user.WriteLine($"{(int)NumericReply.NoSuchChannel} {channelName} :No such channel");
                 return;
             }
 

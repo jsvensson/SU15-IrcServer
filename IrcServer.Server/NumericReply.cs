@@ -10,6 +10,7 @@ namespace IrcServer
     {
         NameReply = 353,
         EndOfNames = 366,
+        NoSuchChannel = 403,
         ErroneousNickname = 432
     }
 }

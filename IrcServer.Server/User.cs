@@ -20,8 +20,8 @@ namespace IrcServer
         {
             Client = client;
             NetworkStream stream = Client.GetStream();
-            reader = new StreamReader(stream);
-            writer = new StreamWriter(stream) { AutoFlush = true };
+            reader = new StreamReader(stream, Encoding.Default);
+            writer = new StreamWriter(stream, Encoding.Default) { AutoFlush = true };
 
             // Say hello to client on connection
             if (Client.Connected)

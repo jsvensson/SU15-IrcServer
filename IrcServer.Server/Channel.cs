@@ -45,7 +45,7 @@ namespace IrcServer
         {
             foreach (User user in Users)
             {
-                user.WriteLine($"MSG {Name} {sender.Nickname} {message}");
+                user.WriteLine($"MSG {Name} <{sender.Nickname}> {message}");
             }
         }
     }
