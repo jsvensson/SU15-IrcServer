@@ -60,11 +60,11 @@ namespace IrcServer
             string clientEndPoint = tcpClient.Client.RemoteEndPoint.ToString();
             Logger.Info($"New connection from {clientEndPoint}");
 
+            var user = new User(tcpClient);
+            Users.Add(user);
+
             try
             {
-                var user = new User(tcpClient);
-                Users.Add(user);
-
                 while (true)
                 {
                     string command = await user.ReadLine();
@@ -79,12 +79,11 @@ namespace IrcServer
                         break;
                     }
                 }
-
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                // TODO: Handle improper connection termination
+                user.Disconnect("WARNING: Client didn't properly close connection");
             }
         }
 
