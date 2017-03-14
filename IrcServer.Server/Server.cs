@@ -82,8 +82,8 @@ namespace IrcServer
             }
             catch (Exception e)
             {
-                // TODO: Handle improper connection termination
-                user.Disconnect("WARNING: Client didn't properly close connection");
+                // TODO: Stop pretending the exception doesn't happen
+                Logger.Info($"{e.GetType()}: {e.Message}");
             }
         }
 
