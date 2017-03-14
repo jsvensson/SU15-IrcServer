@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace IrcServer.Commands
+namespace IrcServer.ProtocolRequests
 {
-    class Join : IServerCommand
+    class Join : IServerRequest
     {
         public void Run(User user, string channelName)
         {

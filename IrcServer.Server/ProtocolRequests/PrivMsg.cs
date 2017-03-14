@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace IrcServer.Commands
+namespace IrcServer.ProtocolRequests
 {
-    class PrivMsg : IServerCommand
+    class PrivMsg : IServerRequest
     {
-        public void Run(User user, string command)
+        public void Run(User user, string request)
         {
-            Tuple<string, string> message = GetMessage(command);
+            Tuple<string, string> message = GetMessage(request);
 
             Channel channel;
             Server.Channels.TryGetValue(message.Item1, out channel);

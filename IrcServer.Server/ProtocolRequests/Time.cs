@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace IrcServer.Commands
+namespace IrcServer.ProtocolRequests
 {
-    public class Time : IServerCommand
+    public class Time : IServerRequest
     {
-        public void Run(User user, string command)
+        public void Run(User user, string request)
         {
             string serverTime = DateTime.Now.ToLongTimeString();
             user.WriteLine($"SERVERTIME {serverTime}");

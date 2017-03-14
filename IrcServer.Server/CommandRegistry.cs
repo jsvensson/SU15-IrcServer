@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using IrcServer.Commands;
+using IrcServer.ProtocolRequests;
 
 namespace IrcServer
 {
     static class CommandRegistry
     {
-        private static Dictionary<string, IServerCommand> Commands { get; } = new Dictionary<string, IServerCommand>();
+        private static Dictionary<string, IServerRequest> Commands { get; } = new Dictionary<string, IServerRequest>();
 
-        public static void RegisterCommand(string command, IServerCommand handler)
+        public static void RegisterCommand(string command, IServerRequest handler)
         {
             command = command.ToUpper();
             Commands.Add(command, handler);
         }
 
-        public static IServerCommand GetCommand(string verb)
+        public static IServerRequest GetCommand(string verb)
         {
-            IServerCommand command;
-            Commands.TryGetValue(verb, out command);
-            return command;
+            IServerRequest request;
+            Commands.TryGetValue(verb, out request);
+            return request;
         }
     }
 }

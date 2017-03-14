@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using IrcServer.Commands;
+using IrcServer.ProtocolRequests;
 
 namespace IrcServer
 {
@@ -24,12 +24,12 @@ namespace IrcServer
         {
             Logger.Info("Registering protocol commands...");
 
-            CommandRegistry.RegisterCommand("TIME", new Commands.Time());
-            CommandRegistry.RegisterCommand("QUIT", new Commands.Quit());
-            CommandRegistry.RegisterCommand("JOIN", new Commands.Join());
-            CommandRegistry.RegisterCommand("PART", new Commands.Part());
-            CommandRegistry.RegisterCommand("PRIVMSG", new Commands.PrivMsg());
-            CommandRegistry.RegisterCommand("NICK", new Commands.Nick());
+            CommandRegistry.RegisterCommand("TIME", new ProtocolRequests.Time());
+            CommandRegistry.RegisterCommand("QUIT", new ProtocolRequests.Quit());
+            CommandRegistry.RegisterCommand("JOIN", new ProtocolRequests.Join());
+            CommandRegistry.RegisterCommand("PART", new ProtocolRequests.Part());
+            CommandRegistry.RegisterCommand("PRIVMSG", new ProtocolRequests.PrivMsg());
+            CommandRegistry.RegisterCommand("NICK", new ProtocolRequests.Nick());
 
             Logger.Info("Protocol commands registered.");
         }
@@ -104,11 +104,11 @@ namespace IrcServer
             }
 
 
-            IServerCommand command = CommandRegistry.GetCommand(instruction);
+            IServerRequest request = CommandRegistry.GetCommand(instruction);
 
-            if (command != null)
+            if (request != null)
             {
-                command.Run(user, args);
+                request.Run(user, args);
             }
             else
             {

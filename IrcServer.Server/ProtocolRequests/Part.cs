@@ -1,6 +1,6 @@
-﻿namespace IrcServer.Commands
+﻿namespace IrcServer.ProtocolRequests
 {
-    class Part : IServerCommand
+    class Part : IServerRequest
     {
         public void Run(User user, string channelName)
         {
