@@ -30,6 +30,7 @@ namespace IrcServer.Client
             // Register commands
             SlashCommandRegistry.RegisterCommand("connect", new Commands.Slash.Connect());
             SlashCommandRegistry.RegisterCommand("disconnect", new Commands.Slash.Disconnect());
+            SlashCommandRegistry.RegisterCommand("raw", new Commands.Slash.Raw());
         }
 
         public void ChannelWriteLine(string text)

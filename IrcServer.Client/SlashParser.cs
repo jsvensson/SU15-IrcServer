@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using IrcServer.Client.Commands;
-using IrcServer.Client.Commands.Slash;
+﻿using IrcServer.Client.Commands.Slash;
 
 namespace IrcServer.Client
 {
-    class SlashParser
+    public static class SlashParser
     {
         public static void Parse(MainWindow window, string value)
         {
