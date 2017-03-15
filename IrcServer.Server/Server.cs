@@ -83,7 +83,7 @@ namespace IrcServer
             catch (Exception e)
             {
                 // TODO: Stop pretending the exception doesn't happen
-                Logger.Info($"{e.GetType()}: {e.Message}");
+                Logger.Warning($"{e.GetType()}: {e.Message}");
             }
         }
 
@@ -102,7 +102,6 @@ namespace IrcServer
                 instruction = value.SplitCommand()[0];
                 args = value.SplitCommand()[1];
             }
-
 
             IServerRequest request = CommandRegistry.GetCommand(instruction);
 

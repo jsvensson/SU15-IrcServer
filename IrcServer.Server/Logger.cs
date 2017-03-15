@@ -8,7 +8,20 @@ namespace IrcServer
 
         public static void Info(string message)
         {
-            Console.WriteLine($"[INFO] {message}");
+            Print("INFO", message);
+        }
+
+        public static void Warning(string message)
+        {
+            Print("WARNING", message, ConsoleColor.Red);
+        }
+
+
+        private static void Print(string type, string message, ConsoleColor color = ConsoleColor.White)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine($"[{type}] {message}");
+            Console.ResetColor();
         }
     }
 
