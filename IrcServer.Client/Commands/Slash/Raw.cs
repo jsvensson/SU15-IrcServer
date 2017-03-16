@@ -5,9 +5,9 @@
     /// </summary>
     class Raw : ISlashCommand
     {
-        public void Run(string command)
+        public async void Run(string command)
         {
-            ClientConnection.WriteLine(command).Wait();
+            await ClientConnection.WriteLine(command);
         }
     }
 }
