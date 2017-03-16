@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using IrcServer.Client.Commands.ServerRequest;
 
 namespace IrcServer.Client
 {
@@ -57,9 +58,30 @@ namespace IrcServer.Client
             }
         }
 
-        private static void HandleServerRequest(string message)
+        private static void HandleServerRequest(string value)
         {
-            ClientMessage.Info($"Unhandled server message: {message}");
+            value = value.Trim();
+            string instruction = value;
+            string args = null;
+
+            // Check if we got parameters with the instruction
+            if (value.IndexOf(' ') > -1)
+            {
+                instruction = value.SplitCommand()[0];
+                args = value.SplitCommand()[1];
+            }
+
+            // Is request registered?
+            IServerRequest request = ServerRequestRegistry.GetHandler(instruction);
+            if (request != null)
+            {
+                request.Run(args);
+            }
+            else
+            {
+                // Protocol request unknown, inform client
+                ClientMessage.Info($"Unknown protocol value: {value}");
+            }
         }
 
         public static async Task WriteLine(string message)

@@ -27,10 +27,13 @@ namespace IrcServer.Client
             // Hook main window up to messenger
             ClientMessage.SetTarget(ChannelTextBlock);
 
-            // Register commands
+            // Register slash commands
             SlashCommandRegistry.RegisterHandler("connect", new Commands.Slash.Connect());
             SlashCommandRegistry.RegisterHandler("disconnect", new Commands.Slash.Disconnect());
             SlashCommandRegistry.RegisterHandler("raw", new Commands.Slash.Raw());
+
+            // Register server requests
+            ServerRequestRegistry.RegisterHandler("NOTICE", new Commands.ServerRequest.Notice());
         }
 
         private void InputTextBox_OnKeyDown(object sender, KeyEventArgs e)

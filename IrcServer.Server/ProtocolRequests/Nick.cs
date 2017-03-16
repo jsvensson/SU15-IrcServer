@@ -8,7 +8,7 @@ namespace IrcServer.ProtocolRequests
         {
             string nick = NickCheck(request);
             user.Nickname = nick;
-            user.WriteLine($"INFO Your nick has been changed to {nick}").Wait();
+            user.WriteLine($"NOTICE Your nick has been changed to {nick}").Wait();
             user.WriteLine($"NICK {nick}");
         }
 

@@ -26,7 +26,7 @@ namespace IrcServer
             // Say hello to client on connection
             if (Client.Connected)
             {
-                WriteLine("INFO Connected to server");
+                WriteLine("NOTICE Connected to server");
             }
         }
 

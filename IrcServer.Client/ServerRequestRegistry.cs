@@ -9,14 +9,14 @@ namespace IrcServer.Client
 
         public static void RegisterHandler(string command, IServerRequest handler)
         {
-            command = command.ToLower();
+            command = command.ToUpper();
             Commands.Add(command, handler);
         }
 
         public static IServerRequest GetHandler(string verb)
         {
             IServerRequest command;
-            Commands.TryGetValue(verb.ToLower(), out command);
+            Commands.TryGetValue(verb.ToUpper(), out command);
             return command;
         }
     }
