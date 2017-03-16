@@ -25,7 +25,6 @@ namespace IrcServer
             Users.Add(user);
 
             // Confirm join to user
-            user.WriteLine($"INFO Joined channel {Name}").Wait();
             user.WriteLine($"JOIN {Name}");
         }
 
@@ -45,7 +44,7 @@ namespace IrcServer
         {
             foreach (User user in Users)
             {
-                user.WriteLine($"MSG {Name} <{sender.Nickname}> {message}");
+                user.WriteLine($"PRIVMSG {Name} {sender.Nickname} :{message}");
             }
         }
     }

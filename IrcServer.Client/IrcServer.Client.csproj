@@ -57,6 +57,8 @@
     <Compile Include="ClientConnection.cs" />
     <Compile Include="ClientMessage.cs" />
     <Compile Include="Commands\ServerRequest\IServerRequest.cs" />
+    <Compile Include="Commands\ServerRequest\Join.cs" />
+    <Compile Include="Commands\ServerRequest\PrivMsg.cs" />
     <Compile Include="Commands\ServerRequest\Notice.cs" />
     <Compile Include="Commands\Slash\Disconnect.cs" />
     <Compile Include="Commands\Slash\Raw.cs" />

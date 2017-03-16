@@ -34,6 +34,8 @@ namespace IrcServer.Client
 
             // Register server requests
             ServerRequestRegistry.RegisterHandler("NOTICE", new Commands.ServerRequest.Notice());
+            ServerRequestRegistry.RegisterHandler("JOIN", new Commands.ServerRequest.Join());
+            ServerRequestRegistry.RegisterHandler("PRIVMSG", new Commands.ServerRequest.PrivMsg());
         }
 
         private void InputTextBox_OnKeyDown(object sender, KeyEventArgs e)
