@@ -10,5 +10,13 @@
 
             return result;
         }
+
+        public static bool IsChannel(this string value)
+        {
+            bool hasHash = value.IndexOf('#') == 0;
+            bool noSpaces = value.IndexOf(' ') == -1;
+
+            return hasHash && noSpaces;
+        }
     }
 }

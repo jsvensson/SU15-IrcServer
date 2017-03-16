@@ -32,6 +32,7 @@ namespace IrcServer.Client
             SlashCommandRegistry.RegisterHandler("disconnect", new Commands.Slash.Disconnect());
             SlashCommandRegistry.RegisterHandler("raw", new Commands.Slash.Raw());
             SlashCommandRegistry.RegisterHandler("chan", new Commands.Slash.SetChannel());
+            SlashCommandRegistry.RegisterHandler("join", new Commands.Slash.Join());
 
             // Register server requests
             ServerRequestRegistry.RegisterHandler("NOTICE", new Commands.ServerRequest.Notice());

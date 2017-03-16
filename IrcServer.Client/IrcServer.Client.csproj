@@ -61,6 +61,7 @@
     <Compile Include="Commands\ServerRequest\Join.cs" />
     <Compile Include="Commands\ServerRequest\PrivMsg.cs" />
     <Compile Include="Commands\ServerRequest\Notice.cs" />
+    <Compile Include="Commands\Slash\Join.cs" />
     <Compile Include="Commands\Slash\SetChannel.cs" />
     <Compile Include="Commands\Slash\Disconnect.cs" />
     <Compile Include="Commands\Slash\Raw.cs" />
