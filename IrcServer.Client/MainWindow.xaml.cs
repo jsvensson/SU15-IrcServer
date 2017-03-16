@@ -56,8 +56,9 @@ namespace IrcServer.Client
                 Client.ChannelMessage(text);
             }
 
-            // Clear input
+            // Clear input, scroll to bottom
             InputTextBox.Text = string.Empty;
+            ChatScrollViewer.ScrollToBottom();
         }
     }
 }

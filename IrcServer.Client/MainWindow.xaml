@@ -8,6 +8,8 @@
         Title="Ful-klient" Height="285.487" Width="478.284">
     <Grid>
         <TextBox x:Name="InputTextBox" KeyDown="InputTextBox_OnKeyDown" TextWrapping="Wrap" Text="" Height="21" VerticalAlignment="Bottom" />
-        <TextBlock x:Name="ChannelTextBlock" Height="228" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+        <ScrollViewer x:Name="ChatScrollViewer" VerticalScrollBarVisibility="Auto" Margin="0,0,0,21">
+            <TextBlock x:Name="ChannelTextBlock"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+        </ScrollViewer>
     </Grid>
 </Window>
