@@ -33,17 +33,6 @@ namespace IrcServer.Client
             SlashCommandRegistry.RegisterCommand("raw", new Commands.Slash.Raw());
         }
 
-        public void ChannelWriteLine(string text)
-        {
-            // Check newline, add if needed
-            if (text.IndexOf('\n') == -1)
-            {
-                text = text + '\n';
-            }
-
-            ChannelTextBlock.Text += text;
-        }
-
         private void InputTextBox_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
@@ -53,7 +42,7 @@ namespace IrcServer.Client
             // Check for slash command
             if (text.IndexOf('/') == 0)
             {
-                SlashParser.Parse(this, InputTextBox.Text);
+                SlashParser.Parse(this, text);
             }
 
             // Clear input

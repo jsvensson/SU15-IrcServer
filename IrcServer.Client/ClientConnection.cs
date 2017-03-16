@@ -61,14 +61,12 @@ namespace IrcServer.Client
         {
             if (client.Connected)
             {
-                writer.WriteLineAsync(message).Wait();
+                await writer.WriteLineAsync(message);
             }
             else
             {
                 ClientMessage.Info("Not connected to server.");
             }
         }
-
-
     }
 }
