@@ -25,7 +25,7 @@ namespace IrcServer.Client
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream) {AutoFlush = true};
 
-            Task t = HandleConnection(client);
+            Task t = HandleConnection();
         }
 
         public static void Disconnect()
@@ -40,7 +40,7 @@ namespace IrcServer.Client
             ClientMessage.Info("Not connected.");
         }
 
-        private static async Task HandleConnection(TcpClient client)
+        private static async Task HandleConnection()
         {
             while (true)
             {
@@ -48,13 +48,18 @@ namespace IrcServer.Client
 
                 if (message != null)
                 {
-                    ClientMessage.Info($"Unhandled server message: {message}");
+                    HandleServerRequest(message);
                 }
                 else
                 {
                     ClientMessage.Info("Lost connection to server");
                 }
             }
+        }
+
+        private static void HandleServerRequest(string message)
+        {
+            ClientMessage.Info($"Unhandled server message: {message}");
         }
 
         public static async Task WriteLine(string message)
