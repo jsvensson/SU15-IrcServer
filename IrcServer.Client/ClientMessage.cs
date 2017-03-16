@@ -39,9 +39,14 @@ namespace IrcServer.Client
             WriteLine($"-notice- {message}");
         }
 
-        public static void ChatMessage(string channel, string user, string message)
+        public static void ChannelMessage(string channel, string user, string message)
         {
             WriteLine($"{channel} <{user}> {message}");
+        }
+
+        public static void PrivateMessage(string user, string message)
+        {
+            WriteLine($"Whisper: <{user}> {message}");
         }
     }
 }

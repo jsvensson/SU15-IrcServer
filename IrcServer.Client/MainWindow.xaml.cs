@@ -31,6 +31,7 @@ namespace IrcServer.Client
             SlashCommandRegistry.RegisterHandler("connect", new Commands.Slash.Connect());
             SlashCommandRegistry.RegisterHandler("disconnect", new Commands.Slash.Disconnect());
             SlashCommandRegistry.RegisterHandler("raw", new Commands.Slash.Raw());
+            SlashCommandRegistry.RegisterHandler("chan", new Commands.Slash.SetChannel());
 
             // Register server requests
             ServerRequestRegistry.RegisterHandler("NOTICE", new Commands.ServerRequest.Notice());
@@ -48,6 +49,11 @@ namespace IrcServer.Client
             if (text.IndexOf('/') == 0)
             {
                 SlashParser.Parse(this, text);
+            }
+            else
+            {
+                // Send to active channel
+                Client.ChannelMessage(text);
             }
 
             // Clear input

@@ -32,7 +32,7 @@ namespace IrcServer.Client.Commands.ServerRequest
             int userLength = value.IndexOf(':') - 1 - userStart;
             string user = value.Substring(userStart, userLength);
 
-            ClientMessage.ChatMessage(channel, user, message);
+            ClientMessage.ChannelMessage(channel, user, message);
         }
 
         private void WritePrivateMessage(string value)
