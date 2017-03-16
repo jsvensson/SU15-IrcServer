@@ -28,9 +28,9 @@ namespace IrcServer.Client
             ClientMessage.SetTarget(ChannelTextBlock);
 
             // Register commands
-            SlashCommandRegistry.RegisterCommand("connect", new Commands.Slash.Connect());
-            SlashCommandRegistry.RegisterCommand("disconnect", new Commands.Slash.Disconnect());
-            SlashCommandRegistry.RegisterCommand("raw", new Commands.Slash.Raw());
+            SlashCommandRegistry.RegisterHandler("connect", new Commands.Slash.Connect());
+            SlashCommandRegistry.RegisterHandler("disconnect", new Commands.Slash.Disconnect());
+            SlashCommandRegistry.RegisterHandler("raw", new Commands.Slash.Raw());
         }
 
         private void InputTextBox_OnKeyDown(object sender, KeyEventArgs e)

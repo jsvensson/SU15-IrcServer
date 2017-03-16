@@ -56,8 +56,10 @@
     </ApplicationDefinition>
     <Compile Include="ClientConnection.cs" />
     <Compile Include="ClientMessage.cs" />
+    <Compile Include="Commands\ServerRequest\IServerRequest.cs" />
     <Compile Include="Commands\Slash\Disconnect.cs" />
     <Compile Include="Commands\Slash\Raw.cs" />
+    <Compile Include="ServerRequestRegistry.cs" />
     <Compile Include="SlashCommandRegistry.cs" />
     <Compile Include="Commands\Slash\Connect.cs" />
     <Compile Include="Commands\Slash\ISlashCommand.cs" />

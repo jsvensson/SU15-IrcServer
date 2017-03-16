@@ -18,7 +18,7 @@ namespace IrcServer.Client
             }
 
             // Check if command exists
-            ISlashCommand cmd = SlashCommandRegistry.GetCommand(command);
+            ISlashCommand cmd = SlashCommandRegistry.GetHandler(command);
 
             if (cmd == null)
             {
